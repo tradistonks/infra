@@ -1,0 +1,114 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tradistonks-api
+  namespace: tradistonks
+  labels:
+    app: tradistonks-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tradistonks-api
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: tradistonks-api
+    spec:
+      containers:
+        - env:
+            - name: MONGODB_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: MONGODB_URL
+                  name: env
+            - name: GODBOX_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: GODBOX_URL
+                  name: env
+            - name: CLIENT_EXTERNAL_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: CLIENT_EXTERNAL_HOST
+                  name: env
+            - name: CLIENT_EXTERNAL_DOMAIN
+              valueFrom:
+                configMapKeyRef:
+                  key: CLIENT_EXTERNAL_DOMAIN
+                  name: env
+            - name: CLIENT_INTERNAL_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: CLIENT_INTERNAL_HOST
+                  name: env
+            - name: API_TRUST_PROXY
+              valueFrom:
+                configMapKeyRef:
+                  key: API_TRUST_PROXY
+                  name: env
+            - name: SESSION_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  key: SESSION_SECRET
+                  name: env
+            - name: SESSION_COOKIE_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: SESSION_COOKIE_NAME
+                  name: env
+            - name: SESSION_COOKIE_SECURE
+              valueFrom:
+                configMapKeyRef:
+                  key: SESSION_COOKIE_SECURE
+                  name: env
+            - name: REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: REDIS_HOST
+                  name: env
+            - name: REDIS_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: REDIS_PORT
+                  name: env
+            - name: OAUTH2_SERVER_INTERNAL_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: OAUTH2_SERVER_INTERNAL_HOST
+                  name: env
+            - name: OAUTH2_CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  key: OAUTH2_CLIENT_ID
+                  name: env
+            - name: OAUTH2_CLIENT_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  key: OAUTH2_CLIENT_SECRET
+                  name: env
+            - name: OAUTH2_LOCAL_REDIRECT_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: OAUTH2_LOCAL_REDIRECT_URL
+                  name: env
+            - name: HYDRA_ADMIN_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: HYDRA_ADMIN_URL
+                  name: env
+            - name: FINNHUB_TOKEN
+              valueFrom:
+                configMapKeyRef:
+                  key: FINNHUB_TOKEN
+                  name: env
+          image: registry.qtmsheep.com/qtmsheep/tradistonks-api:latest
+          name: tradistonks-api
+          ports:
+            - containerPort: 3000
+          resources: {}
+      imagePullSecrets:
+        - name: docker-registry-secret
+      restartPolicy: Always
+status: {}

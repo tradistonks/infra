@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hydra
+  namespace: tradistonks
+  labels:
+    app: hydra
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hydra
+  template:
+    metadata:
+      labels:
+        app: hydra
+    spec:
+      containers:
+        - args:
+            - serve
+            - all
+            - --dangerous-force-http
+          env:
+            - name: CORS_ALLOWED_METHODS
+              value: POST,GET,PUT,DELETE
+            - name: CORS_ENABLED
+              value: "true"
+            - name: LOG_LEVEL
+              value: debug
+            - name: SECRETS_SYSTEM
+              valueFrom:
+                configMapKeyRef:
+                  key: HYDRA_SECRETS_SYSTEM
+                  name: env
+            - name: DSN
+              valueFrom:
+                configMapKeyRef:
+                  key: HYDRA_DSN
+                  name: env
+            - name: URLS_SELF_ISSUER
+              valueFrom:
+                configMapKeyRef:
+                  key: HYDRA_URLS_SELF_ISSUER
+                  name: env
+            - name: URLS_CONSENT
+              valueFrom:
+                configMapKeyRef:
+                  key: HYDRA_URLS_CONSENT
+                  name: env
+            - name: URLS_LOGIN
+              valueFrom:
+                configMapKeyRef:
+                  key: HYDRA_URLS_LOGIN
+                  name: env
+          image: oryd/hydra:v1.10.2
+          name: hydra
+          ports:
+            - containerPort: 4444
+            - containerPort: 4445
+          resources: {}
+      imagePullSecrets:
+        - name: docker-registry-secret
+      restartPolicy: Always
+status: {}

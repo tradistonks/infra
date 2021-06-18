@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: tradistonks-client
+  namespace: tradistonks
+  labels:
+    app: tradistonks-client
+spec:
+  rules:
+    - host: tradistonks.qtmsheep.com
+      http:
+        paths:
+          - backend:
+              serviceName: tradistonks-client
+              servicePort: 3080
+status:
+  loadBalancer: {}

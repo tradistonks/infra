@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hydra-postgres
+  namespace: tradistonks
+  labels:
+    app: hydra-postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hydra-postgres
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: hydra-postgres
+    spec:
+      containers:
+        - env:
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  key: HYDRA_POSTGRES_DB
+                  name: env
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  key: HYDRA_POSTGRES_USER
+                  name: env
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: HYDRA_POSTGRES_PASSWORD
+                  name: env
+          image: postgres:9.6
+          name: hydra-postgres
+          ports:
+            - containerPort: 5432
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: hydra-postgres-data
+      restartPolicy: Always
+      volumes:
+        - name: hydra-postgres-data
+          persistentVolumeClaim:
+            claimName: hydra-postgres-data
+status: {}

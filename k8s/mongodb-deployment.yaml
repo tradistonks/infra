@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb
+  namespace: tradistonks
+  labels:
+    app: mongodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mongodb
+    spec:
+      containers:
+        - image: mongo:latest
+          name: mongodb
+          ports:
+            - containerPort: 27017
+          resources: {}
+          volumeMounts:
+            - mountPath: /data/db/
+              name: mongodb-data
+            - mountPath: /var/log/mongodb/
+              name: mongodb-logs
+      restartPolicy: Always
+      volumes:
+        - name: mongodb-data
+          persistentVolumeClaim:
+            claimName: mongodb-data
+        - name: mongodb-logs
+          persistentVolumeClaim:
+            claimName: mongodb-logs
+status: {}

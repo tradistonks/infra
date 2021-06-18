@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hydra
+  namespace: tradistonks
+  labels:
+    app: hydra
+spec:
+  rules:
+    - host: oauth2.tradistonks.qtmsheep.com
+      http:
+        paths:
+          - backend:
+              serviceName: hydra
+              servicePort: 4444
+status:
+  loadBalancer: {}

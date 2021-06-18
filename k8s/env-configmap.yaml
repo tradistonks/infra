@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env
+  namespace: tradistonks
+data:
+  MONGODB_URL: mongodb://mongodb:27017/tradistonks
+  GODBOX_URL: http://godbox:8080
+
+  CLIENT_EXTERNAL_HOST: https://tradistonks.qtmsheep.com
+  CLIENT_EXTERNAL_DOMAIN: qtmsheep.com
+  CLIENT_INTERNAL_HOST: http://tradistonks-client:3000
+
+  API_TRUST_PROXY: "true"
+
+  SESSION_SECRET:
+  SESSION_COOKIE_NAME: yamete_senpai
+  SESSION_COOKIE_SECURE: "false"
+
+  REDIS_HOST: redis
+  REDIS_PORT: "6379"
+
+  OAUTH2_SERVER_INTERNAL_HOST: http://hydra:4444
+  OAUTH2_CLIENT_ID:
+  OAUTH2_CLIENT_SECRET:
+  OAUTH2_LOCAL_REDIRECT_URL: https://tradistonks.qtmsheep.com/oauth2/callback
+
+  HYDRA_POSTGRES_DB: hydra
+  HYDRA_POSTGRES_USER: senpai
+  HYDRA_POSTGRES_PASSWORD: z4NwSkW86ZpBJ9g6
+  HYDRA_SECRETS_SYSTEM: maLY3x8mZ43uRJxw
+  HYDRA_DSN: postgres://senpai:z4NwSkW86ZpBJ9g6@hydra-postgres:5432/hydra?sslmode=disable
+  HYDRA_URLS_SELF_ISSUER: https://oauth2.tradistonks.qtmsheep.com/
+  HYDRA_URLS_CONSENT: https://tradistonks.qtmsheep.com/oauth2/consent
+  HYDRA_URLS_LOGIN: https://tradistonks.qtmsheep.com/oauth2/login
+  HYDRA_ADMIN_URL: http://hydra:4445
+
+  FINNHUB_TOKEN:
+
+  API_EXTERNAL_HOST: https://api.tradistonks.qtmsheep.com
+  API_INTERNAL_HOST: http://tradistonks-api:3000
+
+  OAUTH2_LOCAL_HOST: https://oauth2.tradistonks.qtmsheep.com
+  OAUTH2_LOCAL_URL: https://oauth2.tradistonks.qtmsheep.com/oauth2/auth
+  OAUTH2_LOCAL_CLIENT_ID:
+  OAUTH2_PKCE_STATE: dPkvseXSu4M33ASh

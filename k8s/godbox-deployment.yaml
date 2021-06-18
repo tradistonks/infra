@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: godbox
+  namespace: tradistonks
+  labels:
+    app: godbox
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: godbox
+  template:
+    metadata:
+      labels:
+        app: godbox
+    spec:
+      containers:
+        - image: quantumsheep/godbox:2
+          name: godbox
+          ports:
+            - containerPort: 8080
+          resources: {}
+          securityContext:
+            privileged: true
+      restartPolicy: Always

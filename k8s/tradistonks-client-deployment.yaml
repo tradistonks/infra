@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tradistonks-client
+  namespace: tradistonks
+  labels:
+    app: tradistonks-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tradistonks-client
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: tradistonks-client
+    spec:
+      containers:
+        - env:
+            - name: API_EXTERNAL_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: API_EXTERNAL_HOST
+                  name: env
+            - name: API_INTERNAL_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: API_INTERNAL_HOST
+                  name: env
+            - name: OAUTH2_LOCAL_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: OAUTH2_LOCAL_URL
+                  name: env
+            - name: OAUTH2_LOCAL_CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  key: OAUTH2_LOCAL_CLIENT_ID
+                  name: env
+            - name: OAUTH2_LOCAL_REDIRECT_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: OAUTH2_LOCAL_REDIRECT_URL
+                  name: env
+            - name: OAUTH2_PKCE_STATE
+              valueFrom:
+                configMapKeyRef:
+                  key: OAUTH2_PKCE_STATE
+                  name: env
+          image: registry.qtmsheep.com/qtmsheep/tradistonks-client:latest
+          name: tradistonks-client
+          ports:
+            - containerPort: 3000
+          resources: {}
+      imagePullSecrets:
+        - name: docker-registry-secret
+      restartPolicy: Always
+status: {}

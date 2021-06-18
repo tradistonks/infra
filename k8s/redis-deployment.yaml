@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  namespace: tradistonks
+  labels:
+    app: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+        - env:
+            - name: ALLOW_EMPTY_PASSWORD
+              value: "yes"
+          image: bitnami/redis:latest
+          name: redis
+          ports:
+            - containerPort: 6379
+          resources: {}
+          volumeMounts:
+            - mountPath: /bitnami/redis/data
+              name: redis-data
+      restartPolicy: Always
+      volumes:
+        - name: redis-data
+          persistentVolumeClaim:
+            claimName: redis-data
+status: {}
