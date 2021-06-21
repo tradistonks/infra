@@ -1,17 +1,21 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: hydra
   namespace: tradistonks
   labels:
     app: hydra
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
     - host: oauth2.tradistonks.qtmsheep.com
       http:
         paths:
-          - backend:
-              serviceName: hydra
-              servicePort: 4444
-status:
-  loadBalancer: {}
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hydra
+                port:
+                  number: 4444
