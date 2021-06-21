@@ -23,4 +23,10 @@ spec:
           resources: {}
           securityContext:
             privileged: true
+          env:
+            - name: API_MAX_PAYLOAD_SIZE
+              valueFrom:
+                configMapKeyRef:
+                  key: GODBOX_API_MAX_PAYLOAD_SIZE
+                  name: env
       restartPolicy: Always

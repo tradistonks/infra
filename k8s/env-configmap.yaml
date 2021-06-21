@@ -44,3 +44,5 @@ data:
   OAUTH2_LOCAL_URL: https://oauth2.tradistonks.qtmsheep.com/oauth2/auth
   OAUTH2_LOCAL_CLIENT_ID:
   OAUTH2_PKCE_STATE: dPkvseXSu4M33ASh
+
+  GODBOX_API_MAX_PAYLOAD_SIZE: "33554432"
