@@ -52,7 +52,13 @@ spec:
           name: tradistonks-client
           ports:
             - containerPort: 3000
-          resources: {}
+          resources:
+            limits:
+              cpu: "0.8"
+              memory: 512Mi
+            requests:
+              cpu: "0.2"
+              memory: 128Mi
       imagePullSecrets:
         - name: docker-registry-secret
       restartPolicy: Always
