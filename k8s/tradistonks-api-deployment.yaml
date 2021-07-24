@@ -93,6 +93,21 @@ spec:
                 configMapKeyRef:
                   key: OAUTH2_LOCAL_REDIRECT_URL
                   name: env
+            - name: OAUTH2_MOBILE_CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  key: OAUTH2_MOBILE_CLIENT_ID
+                  name: env
+            - name: OAUTH2_MOBILE_CLIENT_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  key: OAUTH2_MOBILE_CLIENT_SECRET
+                  name: env
+            - name: OAUTH2_MOBILE_LOCAL_REDIRECT_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: OAUTH2_MOBILE_LOCAL_REDIRECT_URL
+                  name: env
             - name: HYDRA_ADMIN_URL
               valueFrom:
                 configMapKeyRef:
@@ -103,7 +118,7 @@ spec:
                 configMapKeyRef:
                   key: FINNHUB_TOKEN
                   name: env
-          image: registry.qtmsheep.com/qtmsheep/tradistonks-api:latest
+          image: registry.qtmsheep.com/qtmsheep/tradistonks-api:1.9.0
           name: tradistonks-api
           ports:
             - containerPort: 3000

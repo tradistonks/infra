@@ -48,7 +48,7 @@ spec:
                 configMapKeyRef:
                   key: OAUTH2_PKCE_STATE
                   name: env
-          image: registry.qtmsheep.com/qtmsheep/tradistonks-client:latest
+          image: registry.qtmsheep.com/qtmsheep/tradistonks-client:1.6.0
           name: tradistonks-client
           ports:
             - containerPort: 3000

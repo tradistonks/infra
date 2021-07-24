@@ -25,6 +25,10 @@ data:
   OAUTH2_CLIENT_SECRET:
   OAUTH2_LOCAL_REDIRECT_URL: https://tradistonks.qtmsheep.com/oauth2/callback
 
+  OAUTH2_MOBILE_CLIENT_ID:
+  OAUTH2_MOBILE_CLIENT_SECRET:
+  OAUTH2_MOBILE_LOCAL_REDIRECT_URL: https://tradistonks.qtmsheep.com/oauth2/callback
+
   HYDRA_POSTGRES_DB: hydra
   HYDRA_POSTGRES_USER: senpai
   HYDRA_POSTGRES_PASSWORD: z4NwSkW86ZpBJ9g6
@@ -35,14 +39,14 @@ data:
   HYDRA_URLS_LOGIN: https://tradistonks.qtmsheep.com/oauth2/login
   HYDRA_ADMIN_URL: http://hydra:4445
 
-  FINNHUB_TOKEN:
+  FINNHUB_TOKEN: c2f7euaad3ien44400q0
 
   API_EXTERNAL_HOST: https://api.tradistonks.qtmsheep.com
   API_INTERNAL_HOST: http://tradistonks-api:3000
 
   OAUTH2_LOCAL_HOST: https://oauth2.tradistonks.qtmsheep.com
   OAUTH2_LOCAL_URL: https://oauth2.tradistonks.qtmsheep.com/oauth2/auth
-  OAUTH2_LOCAL_CLIENT_ID:
+  OAUTH2_LOCAL_CLIENT_ID: b30ae9c2dc8ef2f96d037f146a0cb729
   OAUTH2_PKCE_STATE: dPkvseXSu4M33ASh
 
   GODBOX_API_MAX_PAYLOAD_SIZE: "33554432"
