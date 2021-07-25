@@ -17,6 +17,7 @@ spec:
     spec:
       containers:
         - image: quantumsheep/godbox:2
+          imagePullPolicy: Always
           name: godbox
           ports:
             - containerPort: 8080
