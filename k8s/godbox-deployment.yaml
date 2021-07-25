@@ -35,4 +35,9 @@ spec:
                 configMapKeyRef:
                   key: GODBOX_API_MAX_PAYLOAD_SIZE
                   name: env
+            - name: MAX_STORAGE_LIMIT
+              valueFrom:
+                configMapKeyRef:
+                  key: GODBOX_MAX_STORAGE_LIMIT
+                  name: env
       restartPolicy: Always
