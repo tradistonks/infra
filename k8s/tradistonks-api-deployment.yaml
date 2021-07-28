@@ -118,7 +118,7 @@ spec:
                 configMapKeyRef:
                   key: FINNHUB_TOKEN
                   name: env
-          image: registry.qtmsheep.com/qtmsheep/tradistonks-api:1.10.0
+          image: registry.qtmsheep.com/qtmsheep/tradistonks-api:1.11.0
           name: tradistonks-api
           ports:
             - containerPort: 3000
